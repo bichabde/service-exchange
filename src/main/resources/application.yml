@@ -1,0 +1,18 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: SERVICE-EXCHANGE
+  cloud:
+    gateway:
+      routes:
+        - id: CLIENT-SERVICE
+          uri: lb://CLIENT-SERVICE
+          predicates:
+            - Path=/clients/**
+
+        - id: ACCOUNT-SERVICE
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/accounts/**
